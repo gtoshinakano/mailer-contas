@@ -5,11 +5,11 @@ var dirData = JSON.parse(fs.readFileSync('diretorias.json', 'utf8'));
 var meses = ["Mes","Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 
 
-/******************************************************************
- * CAMPOS PARA SEREM ALTERADOS A CADA ENVIO DE CONTAS
- * PARA CONSULTAR DIRETORIAS, VÁ EM diretorias.json
- * PARA ALTERAR NÚMEROS PROCURE PELO VENCIMENTO EM diretorias.json
- ******************************************************************/
+/*******************************************************************
+ * ABAIXO,  CAMPOS PARA SEREM ALTERADOS A CADA ENVIO DE CONTAS     *
+ * PARA CONSULTAR DIRETORIAS, VÁ EM diretorias.json                * 
+ * PARA ALTERAR NÚMEROS PROCURE PELO VENCIMENTO EM diretorias.json *
+ *******************************************************************/
 var diretoria = dirData.BBT;
 var telefones = diretoria.telefones.venc24;
 var mesRef = 2;
@@ -59,7 +59,8 @@ var mailOptions = {
 	generateTextFromHTML: true,
 	html: mailBodyHtml, // html body
     attachments: makeAttachmentArray(filesArray),
-	isComplete : isValidToSendEmail(filesArray, telefones) // to send or not
+	isComplete : isValidToSendEmail(filesArray, telefones), // to send or not
+	anoRef: anoRef
 
 };
 
