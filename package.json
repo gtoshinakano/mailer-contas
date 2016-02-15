@@ -1,0 +1,26 @@
+{
+  "name": "monthly-bill-sender",
+  "version": "0.0.0",
+  "description": "Monthly Bill mail sender for payment purposes",
+  "main": "sendmail.js",
+  "scripts": {
+    "test": "node sendmail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gtoshinakano/mailer-contas.git"
+  },
+  "keywords": [
+    "Mailer",
+    "CLI"
+  ],
+  "author": "Gabriel Toshinori Nakano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gtoshinakano/mailer-contas/issues"
+  },
+  "homepage": "https://github.com/gtoshinakano/mailer-contas#readme",
+  "dependencies": {
+    "nodemailer": "0.7.1"
+  }
+}
