@@ -1,0 +1,28 @@
+{
+	"BBT": {
+		"sigla" : "BBT",
+		"diretoria" : "Diretoria de Bacia do Baixo Tietê",
+		"diretor" : "Lupércio",
+		"email" : "gtoshinakano@gmail.com",
+		"telefones" : {
+			"venc18" : [" 3642-0094"," 3642-3502"," 3642-3531"," 3642-3655"," 3642-7379"," 3642-3804"],
+			"venc1"  : [" 3281-1819"," 3281-4050"," 3307-3711"," 3371-8600"],
+			"venc24" : [" 3542-1252"," 3542-1262"," 3542-2756"," 3203-3699"," 3203-7501"]
+		}
+	},
+	"BMT": {
+		"sigla" : "BMT",
+		"diretoria" : "Diretoria de Bacia do Médio Tietê",
+		"diretor" : "Moretti",
+		"email" : "gnakano@sp.gov.br",
+		"telefones" : 
+			[]
+	},
+	"BAT": {
+		"sigla" : "BAT",
+		"diretoria" : "Diretoria de Bacia do Alto Tietê e Baixada Santista",
+		"diretor" : "Seica Ono",
+		"email" : "gnakano@sp.gov.br",
+		"telefones" : []
+	}	
+}
