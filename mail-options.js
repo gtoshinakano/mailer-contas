@@ -8,18 +8,18 @@ var meses = ["Mes","Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho"
 /*******************************************************************
  * ABAIXO,  CAMPOS PARA SEREM ALTERADOS A CADA ENVIO DE CONTAS     *
  * PARA CONSULTAR DIRETORIAS, VÁ EM diretorias.json                * 
- * PARA ALTERAR NÚMEROS PROCURE PELO VENCIMENTO EM diretorias.json *
+ * PARA ALTERAR DADOS PROCURE PELO VENCIMENTO EM diretorias.json   *
  *******************************************************************/
-var diretoria = dirData.DEOTESTE;
-var telefones = diretoria.telefones.venc18;
+var diretoria = dirData.BBT;
+var consumidoras = diretoria.consumidoras;
 var mesRef = 3;
 var anoRef = 2016;
 var vencimento = "12/03/2016";
-var responderPara = "avelez@sp.gov.br";
+var responderPara = "taiara.vitoria@daee.sp.gov.br";
 
 // Mostrar qual diretoria está sendo enviada.
 console.log("Enviando email para : " + diretoria.sigla);
-console.log("Caso estas informações estejam erradas, tecle CTRL + C para finalizar o programa.");
+console.log("Caso deseje cancelar o envio, feche esta janela antes de finalizar.");
 
 
 // Attachment array for Nodemailer, from /contas/anexos
@@ -29,7 +29,7 @@ var makeAttachmentArray = function(files){
 	var _ret = [];
 	for(var i=0; i < files.length; i++){
 		var pushItem = {
-			fileName: diretoria.sigla + '_' + anoRef + '-' + _ref + '_vencto_' + vencimento.replace(/\//g, '-') + '_' + i + '-' + meses[mesRef] +'.pdf', // nome do arquivo
+			fileName: diretoria.sigla + '_' + anoRef + '-' + _ref + '_' + meses[mesRef] + '.pdf', // nome do arquivo
 			filePath: attachPath + "/" + files[i]
 		}
 		_ret.push(pushItem);
@@ -39,34 +39,43 @@ var makeAttachmentArray = function(files){
 }
 
 // Check if all info and attachments are ok.
-var isValidToSendEmail = function(files, telefones){
+var isValidToSendEmail = function(files, consumidoras){
 	
 	console.log('Qtd Anexos: ' + files.length);
-	console.log('Qtd Telefones: ' + telefones.length);
-	return (files.length > 0 && telefones.length > 0);
+	console.log('Qtd Consumidoras: ' + consumidoras.length);
+	return (files.length > 0 && consumidoras.length > 0);
 	
 }
 
-var mailBodyHtml = '<b>Senhor Diretor da '+ diretoria.sigla +',</b><br /><p>Em observância ao Item I do Artigo 4º da Portaria DAEE-389, de 03/02/2016, anexamos ao presente correio eletrônico a(s) conta(s) digitalizada(s) da(s) linha(s): ';
-mailBodyHtml += telefones.toString() + ' referente(s) ao mês de <b>'+ meses[mesRef] + ' de ' + anoRef +'</b>, instalada(s) em unidade(s) dessa Diretoria, com vencimento em '+ vencimento +', para que seja(m) ratificada(s) por Vossa Senhoria.</p>';
-mailBodyHtml += '<p>A ratificação poderá ser feita  no próprio corpo deste correio eletrônico e enviada como resposta para avelez@sp.gov.br.</p>';
-mailBodyHtml += '<p>Se houverem ligações particulares a serem ressarcidas, o depósito deverá ser feito na conta "C" do DAEE no Banco do Brasil S/A - 001 - Ag. 1897-X - Conta Corrente nº139.572-6.</p>';
+var mailBodyHtml = '<b>Boa tarde Sr(a). '+ diretoria.diretor +',</b><br /><p>Em anexo seguem os arquivos contendo as contas de energia elétrica digitalizadas, referentes ao período de consumo do mês de <b>' + meses[mesRef] + ' de ' + anoRef + '</b> das seguintes instalações de vossa Diretoria: ';
+mailBodyHtml += '<p>';
+for(var i=0; i < consumidoras.length; i++){
+	
+	var _sequencia = i + 1;
+	mailBodyHtml += '\n<br />' + _sequencia + ') ' + consumidoras[i][0] + ' - ' + consumidoras[i][1] + ' - ' + consumidoras[i][2] + '';
+	
+	
+}
+mailBodyHtml += '</p>';
+mailBodyHtml += '<p>Solicitamos que seja atestado o consumo de energia elétrica no próprio corpo deste correio eletrônico e nos envie como resposta para taiara.vitoria@daee.sp.gov.br, no prazo máximo de 10 (dez) dias, para que possamos anexá-lo ao respectivo processo de pagamento. </p>';
+mailBodyHtml += '<p>Att.</p>';
+mailBodyHtml += '<p>Taiara Vitória</p>';
 mailBodyHtml += '<p>.</p>';
 
-var mailSubject = 'Atestado de contas telefônicas ref. '+ meses[mesRef] + ' de ' + anoRef +' - '+ diretoria.sigla;
+var mailSubject = 'Atestado de contas de Energia Elétrica ref. '+ meses[mesRef] + ' de ' + anoRef +' ';
 
 // Returned on sendmail.js with email props
 var mailOptions = {
 
-    from : 'DAEE DSD/ADA <avelez@sp.gov.br>', // sender address
+    from : 'DAEE DSD/ADA <taiara.vitoria@daee.sp.gov.br>', // sender address
 	replyTo : responderPara,
     to: diretoria.email,
-	bcc: "avelez@sp.gov.br",
+	bcc: "gnakano@sp.gov.br",
     subject: mailSubject, // Subject line
 	generateTextFromHTML: true,
 	html: mailBodyHtml, // html body
     attachments: makeAttachmentArray(filesArray),
-	isComplete : isValidToSendEmail(filesArray, telefones), // to send or not
+	isComplete : isValidToSendEmail(filesArray, consumidoras), // to send or not
 	anoRef: anoRef
 
 };
