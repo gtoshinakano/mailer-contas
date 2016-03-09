@@ -11,11 +11,10 @@ var meses = ["Mes","Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho"
  * PARA ALTERAR DADOS PROCURE PELO VENCIMENTO EM diretorias.json   *
  *******************************************************************/
 var diretoria = dirData.BBT;
-var consumidoras = diretoria.consumidoras;
 var mesRef = 3;
 var anoRef = 2016;
-var vencimento = "12/03/2016";
 var responderPara = "taiara.vitoria@daee.sp.gov.br";
+var consumidoras = diretoria.consumidoras;
 
 // Mostrar qual diretoria está sendo enviada.
 console.log("Enviando email para : " + diretoria.sigla);
